@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -460,10 +461,16 @@ class _TextSelectionHandleOverlayState
   }
 
   void _handleDragStart(DragStartDetails details) {
-    final Size handleSize = widget.selectionControls.getHandleSize(
-      widget.renderObject.preferredLineHeight,
-    );
-    _dragPosition = details.globalPosition + Offset(0.0, -handleSize.height);
+    switch (widget.position) {
+      case _TextSelectionHandlePosition.start:
+        _dragPosition =
+            details.globalPosition + Offset(0.0, Platform.isIOS ? 8 : -15);
+        break;
+      case _TextSelectionHandlePosition.end:
+        _dragPosition =
+            details.globalPosition + Offset(0.0, Platform.isIOS ? -8 : -25);
+        break;
+    }
   }
 
   void _handleDragUpdate(DragUpdateDetails details) {

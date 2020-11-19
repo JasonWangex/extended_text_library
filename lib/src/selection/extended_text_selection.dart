@@ -362,13 +362,13 @@ class CommonTextSelectionGestureDetectorBuilder
   void onSingleLongTapMoveUpdate(LongPressMoveUpdateDetails details) {
     if (delegate.selectionEnabled) {
       switch (Theme.of(_context).platform) {
-        case TargetPlatform.iOS:
         case TargetPlatform.macOS:
           renderEditable.selectPositionAt(
             from: details.globalPosition,
             cause: SelectionChangedCause.longPress,
           );
           break;
+        case TargetPlatform.iOS:
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
         case TargetPlatform.linux:
@@ -388,10 +388,10 @@ class CommonTextSelectionGestureDetectorBuilder
     _hideToolbar();
     if (delegate.selectionEnabled) {
       switch (Theme.of(_context).platform) {
-        case TargetPlatform.iOS:
         case TargetPlatform.macOS:
           renderEditable.selectWordEdge(cause: SelectionChangedCause.tap);
           break;
+        case TargetPlatform.iOS:
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
         case TargetPlatform.linux:
@@ -407,13 +407,13 @@ class CommonTextSelectionGestureDetectorBuilder
   @override
   void onSingleLongTapStart(LongPressStartDetails details) {
     switch (Theme.of(_context).platform) {
-      case TargetPlatform.iOS:
       case TargetPlatform.macOS:
         renderEditable.selectPositionAt(
           from: details.globalPosition,
           cause: SelectionChangedCause.longPress,
         );
         break;
+      case TargetPlatform.iOS:
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
       case TargetPlatform.linux:
